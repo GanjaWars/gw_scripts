@@ -1,1 +1,1 @@
-# Userscripts for GW
+# Скрипты для GanjaWars.ru
