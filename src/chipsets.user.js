@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name            Chipsets [GW}
+// @name            Chipsets [GW]
 // @namespace       http://www.heymexa.ru/
 // @description     Облегчает выбор чипсета в синд магазе
 // @include         http://www.ganjawars.ru/sshop.php?tshop=chipsets
@@ -33,7 +33,7 @@
     // чипсеты
     var CHIPSETS_INFO = {
         'chip_armour': { rank: 4},
-        'chip_armour1': { rank: 0},
+        'chip_armour1': { rank: 1},
         'chip_armour2': { rank: 2},
         'chip_armour3': { rank: 5},
         'chipset_bonus1': { rank: 1},
