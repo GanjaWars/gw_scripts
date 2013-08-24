@@ -5,7 +5,7 @@
 // @include         http://ganjawars.ru/*
 // @include         http://*.ganjawars.ru/*
 // @grant           none
-// @version         0.1
+// @version         1.01
 // @author          W_or_M
 // ==/UserScript==
 
@@ -22,6 +22,41 @@
             }
             this.storageKey = 'item-finder';
             this.storage = window.localStorage;
+
+            /**
+             * Массив содержащий найденные предметы
+             * используется в дальнейшем для сохранения в хранилище
+             * @type {Array}
+             */
+            this.findedItems = [];
+
+            /**
+             * Количество найденных предметов
+             * @type {number}
+             * @private
+             */
+            this._itemsLength = 0;
+
+            /**
+             * Счетчик запросов на поиск предметов
+             * @type {number}
+             * @private
+             */
+            this._itemsCounter = 0;
+
+            /**
+             * Последние найденные предметы
+             * @type {Array}
+             * @private
+             */
+            this._lastFindedItems = [];
+
+            /**
+             * Найденные предметы
+             * @type {Array}
+             */
+            this.findedItems = [];
+
 
             this._initCSS();
             this._initMenu();
@@ -410,6 +445,10 @@
             this.resultsHolder.innerHTML = '';
             this.results.style.display = 'block';
             this.blacker.style.display = 'block';
+            this._itemsLength = items.length;
+            this._itemsCounter = 0;
+            this._lastFindedItems = this.getLastFindedItems();
+            this.findedItems = [];
             items.forEach(function(item, i) {
                 this.searchItem(item);
             }.bind(this));
@@ -452,12 +491,61 @@
                         itemLink.innerHTML = self.getItemLink(item);
                         itemLink.className = 'wb';
                         elems[i].insertBefore(itemLink, td[0]);
+                        if (self.inArray(elems[i].innerHTML,self._lastFindedItems)) {
+                            elems[i].style.opacity = 0.5;
+                        }
                         self.resultsHolder.appendChild(elems[i]);
-
+                        self.findedItems.push(elems[i].innerHTML);
                     }
+
+                    ++self._itemsCounter;
+                    if (self._itemsCounter === self._itemsLength) {
+                        self.saveFindedItems();
+                    }
+
                 })
             }
-            request(url)
+            request(url);
+
+        },
+
+        /**
+         *
+         * @param item
+         * @param {array} array
+         * @returns {boolean}
+         */
+        inArray: function (item, array) {
+            var retval = false;
+            array.forEach(function(i) {
+                if (item == i) {
+                    retval = true;
+                }
+            });
+            return retval;
+        },
+
+        /**
+         * Сохраняет найденные предметы
+         */
+        saveFindedItems: function () {
+            if (!this.findedItems.length) {
+                return;
+            }
+            var findedItemsJson = JSON.stringify(this.findedItems);
+            this.storage.setItem(this.storageKey +'__finded-items', findedItemsJson);
+        },
+
+        /**
+         * Возвращает массив последних найденных предметов
+         * @returns {Array}
+         */
+        getLastFindedItems: function () {
+            var findedItems = this.storage.getItem(this.storageKey +'__finded-items');
+            if (!findedItems) {
+                return [];
+            }
+            return JSON.parse(findedItems);
         },
 
         /**
