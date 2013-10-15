@@ -5,7 +5,7 @@
 // @include         http://www.ganjawars.ru/*
 // @include         http://ganjawars.ru/*
 // @grant           none
-// @version         1.0
+// @version         1.01
 // @author          W_or_M
 // ==/UserScript==
 
@@ -24,6 +24,17 @@
          * @private
          */
         this._table = null;
+
+        /**
+         * @type {Number}
+         * @private
+         */
+        this._killerLevel = 0;
+
+        /**
+         * @const
+         */
+        this.KILLER_CHECK_TIMEOUT = 3600;
 
         this._init();
     };
@@ -49,7 +60,52 @@
          * @private
          */
         _onAllPage: function () {
+            this._checkKillerLevel();
             this._initKornetInfo();
+        },
+
+        /**
+         * @private
+         */
+        _checkKillerLevel: function () {
+            var time = this._getKillerCheckTime();
+            if (!time || (this.KILLER_CHECK_TIMEOUT - Math.floor((new Date(time) - new Date()) / 1000)) < 0) {
+                this._getKillerLevel();
+                return;
+            }
+            this._killerLevel = parseInt(window.localStorage.getItem('kornet__killer-level'), 10);
+        },
+
+        /**
+         * @returns {*}
+         * @private
+         */
+        _getKillerLevel: function () {
+            var self = this;
+            ajaxQuery('/info.php?id='+ getCookie('uid'), 'GET', '', true, function (req) {
+                var html = req.responseText;
+                try {
+                    self._killerLevel = parseInt(/Киллер.*?<font color=#000099>(\d+)<\/b>/.exec(html)[1], 10);
+                    window.localStorage.setItem('kornet__killer-level', self._killerLevel);
+                    window.localStorage.setItem('kornet__killer-check-time', new Date());
+                } catch (e) {}
+            });
+        },
+
+        /**
+         * @returns {null|String}
+         * @private
+         */
+        _getKillerCheckTime: function () {
+            return window.localStorage.getItem('kornet__killer-check-time');
+        },
+
+        /**
+         * @returns {Number}
+         * @private
+         */
+        _getTime: function () {
+            return 10 - (Math.floor(this._killerLevel / 2));
         },
 
         /**
@@ -61,7 +117,7 @@
                 this._kornetInfo.style.color = 'green';
                 this._kornetInfo.style.fontWeight = 'bold';
             } else {
-                var time = 600 - Math.floor((new Date() - new Date(this._getKornetTime())) / 1000);
+                var time = (this._getTime() * 60) - Math.floor((new Date() - new Date(this._getKornetTime())) / 1000);
                 if (time < 0) {
                     return;
 
@@ -122,7 +178,7 @@
                 return true;
             }
             var dateTime = new Date(time);
-            dateTime.setMinutes(dateTime.getMinutes() + 10);
+            dateTime.setMinutes(dateTime.getMinutes() + this._getTime());
             return dateTime < new Date();
         },
 
@@ -276,7 +332,27 @@
             if (xmlHttpRequest.status == 200 && typeof onsuccess != 'undefined') onsuccess(xmlHttpRequest);
             else if (xmlHttpRequest.status != 200 && typeof onfailure != 'undefined') onfailure(xmlHttpRequest);
         }
-    };
+    }
+
+    function getCookie(name) {
+        var cookie = " " + document.cookie;
+        var search = " " + name + "=";
+        var setStr = null;
+        var offset = 0;
+        var end = 0;
+        if (cookie.length > 0) {
+            offset = cookie.indexOf(search);
+            if (offset != -1) {
+                offset += search.length;
+                end = cookie.indexOf(";", offset)
+                if (end == -1) {
+                    end = cookie.length;
+                }
+                setStr = unescape(cookie.substring(offset, end));
+            }
+        }
+        return(setStr);
+    }
 
     var kornet = new Kornet();
 })();
