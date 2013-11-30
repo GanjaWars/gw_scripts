@@ -4,7 +4,7 @@
 // @description		Удобные ссылки для полива, сбора, копания, посадки на ферме.
 // @include			http://www.ganjawars.ru/ferma.php*
 // @license			MIT
-// @version			1.0
+// @version			1.01
 // @author			MyRequiem
 // ==/UserScript==
 
@@ -91,5 +91,6 @@
 	}, false);
 
 	doc.body.appendChild(but);
+    but.focus();
 
 }());
