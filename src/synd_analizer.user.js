@@ -311,7 +311,7 @@
 			var target = a[i].parentNode;
 			if (target.lastElementChild.nodeName == 'BR') target.removeChild(target.lastElementChild);
 			var synd_aanaliz = doc.createElement('a');
-			synd_aanaliz.id = 'show_analize_panel';
+			synd_aanaliz.id = 'show_analyze_panel';
 			synd_aanaliz.setAttribute('style', 'text-decoration:none;');
 			synd_aanaliz.href = '#';
 			synd_aanaliz.innerHTML = 'Анализ';
@@ -325,7 +325,7 @@
 		}
 	}
 
-	getObj('show_analize_panel').addEventListener('click', function() {
+	getObj('show_analyze_panel').addEventListener('click', function() {
 		if (getObj('analize_txt')) return;
 		table.setAttribute('class', 'wb');
 		table.removeAttribute('style');

@@ -33,7 +33,7 @@
 		}
 	}
 //--------------------------------------------------------------------------------------------------
-	function getPagesData(ind){
+	function getPagesData(ind) {
 		getObj('analizePTS_counter').innerHTML = '(' +  (ind + 1) + ')';
 		url = 'http://www.ganjawars.ru/syndicate.log.php?id=' + syndID + '&ptslog=1&page_id=' + ind;
 		ajaxQuery(url, function(xml) {
@@ -43,7 +43,7 @@
 			var nobrs = spanContent.getElementsByTagName('nobr');
 			for (var i = 0; i < nobrs.length; i++) {
 				if (/\d+\.\d+\.\d+/.test(nobrs[i].innerHTML)) {
-					lines[lines.length] = nobrs[i].lastChild.textContent;
+					lines[lines.length] = nobrs[i].nextElementSibling.textContent;
 				}
 			}
 
