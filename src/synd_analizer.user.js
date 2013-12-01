@@ -4,7 +4,7 @@
 // @description		Анализ активности синдиката с указанного периода и до настоящего момента (кнопка на странице онлайна любого синдиката).
 // @include			http://www.ganjawars.ru/syndicate.php?id=*
 // @license			MIT
-// @version			1.3
+// @version			1.3.1
 // @author			MyRequiem
 // ==/UserScript==
 
@@ -73,7 +73,7 @@
 		ob.pPTS		+= +parseStr[4].replace(/,/g, '');	//заработано PTS
 	}
 //--------------------------------------------------------------------------------------------------
-	function getPersLink(node) {return node.firstElementChild.nextElementSibling;}
+	function getPersLink(node) {return node.firstElementChild;}
 //--------------------------------------------------------------------------------------------------
 	function CreatePers(link) {
 		this.link = link.href;
@@ -200,7 +200,7 @@
 			var f = spanContent.getElementsByTagName('NOBR');
 			for (var i = 0; i < f.length; i++) {
 				if (/\d+\.\d+\.\d+/.test(f[i].innerHTML)) {
-					lines[lines.length] = f[i];   //заполняем массив строк
+					lines[lines.length] = f[i].nextElementSibling;	//заполняем массив строк
 				}
 			}
 
@@ -259,7 +259,7 @@
 					}
 
 					case 9: {	//выгнали из синда
-						dismissed_synd[dismissed_synd.length] = /<\/font>&nbsp;&nbsp;&nbsp;(.*) покинул синдикат/.exec(lines[i].innerHTML)[1];
+						dismissed_synd[dismissed_synd.length] = /^(.*) покинул синдикат/.exec(str)[1];
 					}
 				}
 			}
