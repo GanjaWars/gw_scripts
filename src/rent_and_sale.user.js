@@ -9,13 +9,19 @@
 // ==/UserScript==
 
 (function(){
+//------------------------------------------------------------------------------
+	function changeColor(color) {
+		tr.firstElementChild.style.background = color;
+		tr.lastElementChild.style.background = color;
+	}
+//------------------------------------------------------------------------------
 	var root = typeof unsafeWindow != 'undefined' ? unsafeWindow : window;
 	if (root.self != root.top) return;
 	var doc = root.document;
 
 	var tr = doc.getElementsByTagName('tr');
 	for (var i = 0; i < tr.length; i++) {
-		if (/не передавать/.test(tr[i].innerHTML)) {
+		if (/не передавать/i.test(tr[i].innerHTML)) {
 			tr = tr[i];
 			break;
 		}
@@ -31,9 +37,9 @@
 		}
 	}
 
-	radio[0].addEventListener('click', function() {tr.style.background = '#F5FFF5';}, false);
-	radio[1].addEventListener('click', function() {tr.style.background = '#FB8F8F';}, false);
-	if (radio[2]) radio[2].addEventListener('click', function() {tr.style.background = '#95CCF6';}, false);
+	radio[0].addEventListener('click', function() {changeColor('#E0EEE0');}, false);
+	radio[1].addEventListener('click', function() {changeColor('#FB8F8F');}, false);
+	if (radio[2]) radio[2].addEventListener('click', function() {changeColor('#95CCF6');}, false);
 
 	var scrpt = doc.createElement('script');
 	scrpt.innerHTML = 'function checkPrice() {'+
