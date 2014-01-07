@@ -2,8 +2,11 @@
 // @name			WorkPostGrenadesBroken
 // @namespace		using namespace std;
 // @description		Окончание работы, осталось времени работать, пришла почта, нет гранаты, имеются сломанные вещи. На все события оповещения звуковые и визуальные.
-// @include			http://www.ganjawars.ru*
-// @exclude			http://www.ganjawars.ru/b0*
+// @include			http://www.ganjawars.ru/me/*
+// @include			http://www.ganjawars.ru/warlog.php?bid=*
+// @include			http://www.ganjawars.ru/statlist.php?r=oil*
+// @include			http://www.ganjawars.ru/warlist.php*
+// @include			http://www.ganjawars.ru/wargroup.php*
 // @license			MIT
 // @version			1.0
 // @author			MyRequiem
@@ -223,7 +226,7 @@
 	var grenades = ['id=anm14','id=m34ph','id=rgd','id=old_rgd5','id=grenade_f1', 'id=lights','id=rkg3','id=mdn',
 		'id=rgo','id=rgn','id=emp_ir','id=fg3','id=emp_s','id=m67','id=m3','id=hg78','id=hg84','id=fg6',
 		'id=grenade_dg1','id=fg5','id=molotov','id=hellsbreath','id=napalm','id=fg7','id=ghtb', '9y_tort',
-		'2013_snowball'];
+		'2013_snowball','2014_'];
 
 	var nobr = doc.getElementsByTagName('nobr')[0];
 	//костыль для хрома против срабатывания на ауте
