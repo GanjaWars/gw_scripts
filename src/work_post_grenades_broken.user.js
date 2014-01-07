@@ -2,13 +2,10 @@
 // @name			WorkPostGrenadesBroken
 // @namespace		using namespace std;
 // @description		Окончание работы, осталось времени работать, пришла почта, нет гранаты, имеются сломанные вещи. На все события оповещения звуковые и визуальные.
-// @include			http://www.ganjawars.ru/me/*
-// @include			http://www.ganjawars.ru/warlog.php?bid=*
-// @include			http://www.ganjawars.ru/statlist.php?r=oil*
-// @include			http://www.ganjawars.ru/warlist.php*
-// @include			http://www.ganjawars.ru/wargroup.php*
+// @include			http://www.ganjawars.ru*
+// @exclude			http://www.ganjawars.ru/b0*
 // @license			MIT
-// @version			1.0
+// @version			1.1
 // @author			MyRequiem
 // ==/UserScript==
 
