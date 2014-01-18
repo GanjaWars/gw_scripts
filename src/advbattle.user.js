@@ -3,7 +3,7 @@
 // @namespace        http://worm.vline.ru/gw/
 // @description      Расширенный список врагов. Сортировка противников по дальности.
 // @include          http://www.ganjawars.ru/b0/b.php*
-// @version          1.01
+// @version          1.02
 // @author           W_or_M
 // ==/UserScript==
 
@@ -84,7 +84,7 @@ if (root.location.href.indexOf('http://www.ganjawars.ru/b0/b.php') >= 0) {
                     // нашли перса
                     if (a[k].id == ('userheader'+ pers_id)) {
 
-                        var node = a[k].nextSibling.nextSibling;
+                        var node = a[k].nextElementSibling;
 
                         // колво хп
                         temp.hp = node.firstChild.nodeValue.replace(/\-\s+/, '; ');
@@ -96,7 +96,9 @@ if (root.location.href.indexOf('http://www.ganjawars.ru/b0/b.php') >= 0) {
                         temp.power = node.childNodes[5].nodeValue.replace(/\-\s+/, '; ');
 
                         // оружие
-                        temp.weapon = '; '+ node.childNodes[13].firstChild.innerHTML;
+						var weap;
+						if (weap = node.getElementsByTagName('li')[0].firstElementChild)
+							temp.weapon = '; '+ weap.innerHTML;
 
                         enemys[i] = temp;
 
