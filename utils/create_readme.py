@@ -24,7 +24,6 @@ _{1}_
 Автор: **{2}**
 <br>
 [Ссылка на скрипт]({3})\n"""
-
     for script in scripts:
         catalog += template.format(script[0], script[1], script[2], script[3])
     return catalog
@@ -43,10 +42,6 @@ def get_scripts():
             print(filename)
         file.close()
     return scripts
-
-
-def parse_file():
-    pass
 
 
 def create_readme():
