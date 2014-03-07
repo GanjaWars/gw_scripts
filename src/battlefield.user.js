@@ -1,8 +1,6 @@
 // ==UserScript==
 // @name FusionGanja :: Battlefield
-// @author Пушкенъ (fix W_or_M)
 // @namespace FG
-// @version 0.1.7
 // @description Графическое улучшение для страницы боя и страницы наблюдения за боем. ВНИМАНИЕ: не работает в JavaScript версии боя
 // @license GPL v3 или любая другая поздняя версия (http://www.gnu.org/copyleft/gpl.html)
 // @include http://*.ganjawars.ru/b*/b.php*
@@ -10,6 +8,8 @@
 // @include http://*.ganjawars.ru/warlog.php?bid=*
 // @include http://ganjawars.ru/warlog.php?bid=*
 // @grant none
+// @version 0.1.7
+// @author Пушкенъ (fix W_or_M)
 // ==/UserScript==
 //                                      НАСТРОЙКИ 
 
