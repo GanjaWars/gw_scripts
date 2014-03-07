@@ -19,13 +19,13 @@ def print_catalog():
     template = """#### {0}
 _{1}_
 <br>
-Версия: 1.0
+Версия: {2}
 <br>
-Автор: **{2}**
+Автор: **{3}**
 <br>
-[Ссылка на скрипт]({3})\n"""
+[Ссылка на скрипт]({4})\n"""
     for script in scripts:
-        catalog += template.format(script[0], script[1], script[2], script[3])
+        catalog += template.format(script[0], script[1], script[2], script[3], script[4])
     return catalog
 
 
@@ -34,9 +34,10 @@ def get_scripts():
     files = os.listdir(dir_src)
     for filename in files:
         file = open(dir_src + '/' + filename, 'r', -1, 'utf-8')
-        name = (re.search('@name\s+(.*?)\n[\s\S]+@description\s+(.*?)\n[\s\S]+@author\s+(.*?)\n', file.read()))
+        name = (re.search('@name\s+(.*?)\n[\s\S]+@description\s+(.*?)\n[\s\S]+@version\s+(.*?)\n'
+                          '[\s\S]+@author\s+(.*?)\n', file.read()))
         if name:
-            script = [name.group(1), name.group(2), name.group(3), raw_script_url % filename]
+            script = [name.group(1), name.group(2), name.group(3), name.group(4), raw_script_url % filename]
             scripts.append(script)
         else:
             print(filename)
