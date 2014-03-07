@@ -59,4 +59,3 @@ def create_readme():
 
 
 create_readme()
-get_scripts()
