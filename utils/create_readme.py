@@ -46,12 +46,14 @@ def get_scripts():
 
 
 def create_readme():
+    print('create README.md')
     file = open('../README.md', 'w', -1, 'utf-8')
     for row in readme:
         file.write(row + '\n')
         if row == '## Каталог скриптов':
             file.write(print_catalog() + '\n')
     file.close()
+    print('done')
 
 
 create_readme()
