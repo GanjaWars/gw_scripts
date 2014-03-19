@@ -42,6 +42,7 @@ def get_scripts():
         else:
             print(filename)
         file.close()
+    scripts.sort()
     return scripts
 
 
