@@ -200,6 +200,14 @@ _Выводит таймер для фермы рядом с "Об игре | Ф
 Автор: **MyRequiem (идея TokimeKatoji)**
 <br>
 [Ссылка на скрипт](https://github.com/heymexa/gw_scripts/raw/master/src/farm_timer_with_sound.user.js)
+#### Farm [GW]
+_Скрипт для облегчения трудовых будней на ферме._
+<br>
+Версия: 1.00
+<br>
+Автор: **W_or_M**
+<br>
+[Ссылка на скрипт](https://github.com/heymexa/gw_scripts/raw/master/src/farm.user.js)
 #### Filter Resources On Stat
 _Фильтр ресурсов на странице статистики._
 <br>
