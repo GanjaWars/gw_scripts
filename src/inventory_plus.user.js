@@ -26,7 +26,9 @@
 		//ищем таблицу с инвентарем
 		var table = doc.getElementsByTagName('table');
 		for (i = 0; i < table.length; i++) {
-			if (table[i].getAttribute('width') == '700' && table[i].getAttribute('cellpadding') == '3') {
+			if (table[i].getAttribute('width') == '700' && table[i].getAttribute('cellspacing') == '1' &&
+				table[i].getAttribute('align') == 'center' && !table[i].getAttribute('style') &&
+				table[i].getAttribute('cellpadding') != '0') {
 				tbody = table[i].firstElementChild;
 				break;
 			}
@@ -118,7 +120,6 @@
 	}
 //------------------------------------------------------------------------------
 	var root = typeof unsafeWindow != 'undefined' ? unsafeWindow : window;
-	if (root.self != root.top) return;
 	var doc = root.document;
 
 	if (/Chrome/i.test(root.navigator.appVersion)) {

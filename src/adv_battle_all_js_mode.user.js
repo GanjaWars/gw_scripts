@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name			Advanced Battle JS Mode
+// @name			Advanced Battle All
 // @namespace		using namespace std;
 // @description		Генератор ходов(легальный), нумерация противников, расширенная информация в списке выбора противника, сортировка списка, ДЦ, продвинутое расположение бойцов на поле боя, кнопка "Сказать ход", быстрая вставка ника в поле чата. Информация вверху о набитом HP, вашем здоровье и т.д. При щелчке на картинке противника происходит его выбор в качестве цели. Кнопка "Обновить" на поле боя.
 // @include			http://www.ganjawars.ru/b0*
@@ -769,7 +769,6 @@
 	}
 //------------------------------------------------------------------------------
 	var root = typeof unsafeWindow != 'undefined' ? unsafeWindow : window;
-	if (root.self != root.top) return;
 	var doc = root.document;
 	var st = root.localStorage;
 
