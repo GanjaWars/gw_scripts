@@ -4,7 +4,7 @@
 // @description		Добавляет возможность установить дополнительные ссылки в панель навигации.
 // @include			http://www.ganjawars.ru*
 // @license			MIT
-// @version			1.0
+// @version			1.1
 // @author			MyRequiem
 // ==/UserScript==
 
@@ -88,7 +88,6 @@
 	}
 //----------------------------------------------------------------------------
 	var root = typeof unsafeWindow != 'undefined' ? unsafeWindow : window;
-	if (root.self != root.top) return;
 	var doc = root.document;
 	var st = root.localStorage;
 
