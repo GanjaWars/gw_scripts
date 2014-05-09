@@ -5,7 +5,7 @@ import os
 import re
 
 dir_src = '../src'
-raw_script_url = 'https://github.com/heymexa/gw_scripts/raw/master/src/%s'
+raw_script_url = 'https://github.com/GanjaWars/gw_scripts/raw/master/src/%s'
 
 readme = [
     '# Скрипты для GanjaWars',
